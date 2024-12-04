@@ -19,9 +19,6 @@ price REAL,
 volume REAL)
 ''')
 
-#cursor.execute("""INSERT INTO coffee_table (sort_name, roasting_degree, beans_or_ground, taste, price, volume)
-#                VALUES (?, ?, ?, ?, ?, ?)""", ["арабика", 1, "молотый", "мммм оооо 123456789012345678234567890", 980.99, 1.2])
-#cursor.execute('UPDATE coffee_table SET roasting_degree=? WHERE coffee_id = ?', [3, 3])
 connection.commit()
 connection.close()
 
@@ -47,7 +44,7 @@ class CoffeeLibrary(QMainWindow):
         central_widget = QWidget()
         central_widget.setLayout(self.gridLayout)
         self.setCentralWidget(central_widget)
-        self.setGeometry(100, 50, 875, 500)
+        self.setGeometry(100, 100, 875, 500)
 
         self.connection = sqlite3.connect("coffee.db")
         self.cursor = self.connection.cursor()
@@ -85,7 +82,7 @@ class CoffeeLibrary(QMainWindow):
             self.statusBar().showMessage("Кофе не найден")
             return None
         self.statusBar().clearMessage()
-        if len(self.results) % 4 == 0:  # устанавливаем кол-во рядов и колонок
+        if len(self.results) % 4 == 0:
             kolv_rows = len(self.results) // 4
         else:
             kolv_rows = len(self.results) // 4 + 1
